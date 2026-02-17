@@ -1,0 +1,6 @@
+{
+  "users": [
+    { "id": 1, "firstName": "Loganathan", "lastName": "S", "phone": "9876543210", "email": "logu@gmail.com" },
+    { "id": 2, "firstName": "Kumar", "lastName": "R", "phone": "9123456780", "email": "kumar@gmail.com" }
+  ]
+}
