@@ -1,5 +1,6 @@
 import React from "react";
 import UsersPage from "./pages/UsersPage";
+import './index.css';
 
 const App = () => {
   return (

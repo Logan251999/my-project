@@ -3,7 +3,7 @@ import UserForm from "../components/UserForm";
 import Loader from "../components/Loader";
 import UserList from "../components/UserList";
 import { ContextContext } from "../context/useContext";
-import { deleteUser, updateUser } from "../services/userservices";
+import { deleteUser } from "../services/userservices";
 import ConfirmDialog from "../components/ConfirmDialog";
 
 const UsersPage = () => {
@@ -16,6 +16,7 @@ const UsersPage = () => {
     const user = data.find((d) => d.id === id);
     setSelectedUser(user ? [user] : null);
   }
+
   function handleDelete(id) {
     setDeleteId(id);
     setShowDialog(true);
@@ -23,7 +24,6 @@ const UsersPage = () => {
 
   async function confirmDelete() {
     if (!deleteId) return;
-
     try {
       await deleteUser(deleteId);
       getData();
@@ -41,21 +41,31 @@ const UsersPage = () => {
   }
 
   return (
-    <div>
+    <div className="app-container">
       {loading && <Loader />}
-      {error && <div style={{ color: "red" }}>Error: {error}</div>}{" "}
+      {error && <div style={{ color: "red" }}>Error: {error}</div>}
       {!loading && !error && (
         <>
-          <UserForm
-            clearSelectedUser={selectedUser}
-            setSelectedUser={setSelectedUser}
-            getData={getData}
-          />
-          <UserList
-            datas={data}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-          />
+          {/* Form Card - Centered */}
+          <div className="card user-form-card">
+            <UserForm
+              clearSelectedUser={selectedUser}
+              setSelectedUser={setSelectedUser}
+              getData={getData}
+            />
+          </div>
+
+          {/* User List Card - Left aligned */}
+          <div className="card user-list">
+            <h2>User List</h2>
+            <UserList
+              datas={data}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
+            />
+          </div>
+
+          {/* Confirm Dialog */}
           <ConfirmDialog
             isOpen={showDialog}
             onConfirm={confirmDelete}

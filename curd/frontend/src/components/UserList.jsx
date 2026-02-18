@@ -1,24 +1,19 @@
 const UserList = ({ datas, handleDelete, handleEdit }) => {
   return (
     <div>
-      <h1>user list</h1>
-      <ul>
-        {datas.map((user) => (
-          <li key={user.id}>
-            <b>
-              {user.firstName} {user.lastName}
-            </b>
-            <br />
-            Phone: {user.phone}
-            <br />
-            Email: {user.email}
-            <button onClick={() => handleEdit(user.id)}>Edit</button>
-            <button onClick={() => handleDelete(user.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      {datas.map((user) => (
+        <div key={user.id} className="user-card">
+          <b>{user.firstName} {user.lastName}</b>
+          <p>Phone: {user.phone}</p>
+          <p>Email: {user.email}</p>
+          <button onClick={() => handleEdit(user.id)}>Edit</button>
+          <button onClick={() => handleDelete(user.id)}>Delete</button>
+        </div>
+      ))}
     </div>
   );
 };
 
 export default UserList;
+
+
